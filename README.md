@@ -11,7 +11,7 @@ name = "vector_komodo_alert"
 repo = "mbecker20/deploy_vector_komodo_alert"
 environment = """
   # https://hub.docker.com/r/timberio/vector
-  VECTOR_TAG = latest-distroless
+  VECTOR_TAG = latest-debian
   LOGGING_DRIVER = local
 
   # Vector will listen on this address for incoming alerts from Komodo
