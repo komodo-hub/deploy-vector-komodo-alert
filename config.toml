@@ -1,0 +1,34 @@
+data_dir = "/var/lib/vector"
+
+[api]
+enabled = false
+
+[sources.alert_server]
+type = "http_server"
+address = "0.0.0.0:7000"
+
+[transforms.alert_output]
+type = "remap"
+inputs = ["alert_server"]
+drop_on_abort = false
+source = """
+.message = parse_json!(.message)
+
+if .message.level == "OK" {
+	.level = "INFO"
+} else if .message.level == "WARNING" {
+	.level = "WARN"
+} else if .message.level == "CRITICAL" {
+	.level = "ERROR"
+}
+"""
+
+[sinks.alert_loki]
+type = "loki"
+inputs = ["alert_output"]
+endpoint = "http://localhost:3100"
+encoding.codec = "json"
+
+[sinks.alert_loki.labels]
+source = "alert"
+level = "{{ .level }}"
