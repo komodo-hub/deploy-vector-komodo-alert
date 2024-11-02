@@ -11,12 +11,12 @@ name = "vector_komodo_alert"
 repo = "mbecker20/deploy_vector_komodo_alert"
 environment = """
   # https://hub.docker.com/r/timberio/vector
-  VECTOR_TAG=latest-distroless
-  LOGGING_DRIVER=local
+  VECTOR_TAG = latest-distroless
+  LOGGING_DRIVER = local
 
   # Vector will listen on this address for incoming alerts from Komodo
-  SERVER_ADDRESS="0.0.0.0:7000"
+  SERVER_ADDRESS = "0.0.0.0:7000"
   # Route alerts to Loki
-  LOKI_ENDPOINT=http://loki:3100
+  LOKI_ENDPOINT = http://loki:3100
 """
 ```
