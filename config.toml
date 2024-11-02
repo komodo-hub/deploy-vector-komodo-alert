@@ -30,5 +30,5 @@ endpoint = "http://localhost:3100"
 encoding.codec = "json"
 
 [sinks.alert_loki.labels]
-source = "alert"
+source = "komodo_alert"
 level = "{{ .level }}"
