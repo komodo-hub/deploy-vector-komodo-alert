@@ -1,20 +1,14 @@
 services:
 
   vector:
-    image: timberio/vector:${VECTOR_VERSION:-latest-distroless}
-    command: --config /config/config.toml --config /override.toml
+    image: timberio/vector:${VECTOR_TAG:-latest-distroless}
+    command: --config /config/config.toml
     network_mode: host
     logging:
       driver: ${LOGGING_DRIVER:-local}
-    configs:
-      - source: override
-        target: /override.toml
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config.toml:/config/config.toml
-
-configs:
-  override:
-    content: |
-      sources.alert_server.address = ${SERVER_ADDRESS:-0.0.0.0:7000}
-      sinks.basic_loki.endpoint = "${LOKI_ENDPOINT:-http://loki:3100}"
+    environment:
+      SERVER_ADDRESS: ${SERVER_ADDRESS:-0.0.0.0:7000"}
+      LOKI_ENDPOINT: ${LOKI_ENDPOINT:-http://loki:3100"}

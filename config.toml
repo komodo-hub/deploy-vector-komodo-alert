@@ -5,7 +5,7 @@ enabled = false
 
 [sources.alert_server]
 type = "http_server"
-address = "0.0.0.0:7000"
+address = "${SERVER_ADDRESS:?must set SERVER_ADDRESS in env}"
 
 [transforms.alert_output]
 type = "remap"
@@ -26,7 +26,7 @@ if .message.level == "OK" {
 [sinks.alert_loki]
 type = "loki"
 inputs = ["alert_output"]
-endpoint = "http://localhost:3100"
+endpoint = "${LOKI_ENDPOINT:?must set LOKI_ENDPOINT in env}"
 encoding.codec = "json"
 
 [sinks.alert_loki.labels]
