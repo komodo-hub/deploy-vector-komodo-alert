@@ -1,6 +1,6 @@
 # Deploy Vector Komodo Alert
 
-Part of the [Komodo Hub collection.](https://github.com/komodo-hub/komodo-hub)
+Part of the [*Komodo Hub* collection.](https://github.com/komodo-hub/komodo-hub)
 
 Runs Vector as an [http server](https://vector.dev/docs/reference/configuration/sources/http_server/), which acts as a custom Komodo Alerter endpoint, and routes the Alerts to Grafana Loki.
 
